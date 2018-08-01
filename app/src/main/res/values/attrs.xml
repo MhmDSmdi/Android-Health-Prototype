@@ -11,11 +11,16 @@
     </declare-styleable>
 
     <declare-styleable name="LineChart">
-        <attr name="min" format="integer" />
-        <attr name="max" format="integer" />
+        <attr name="minXCoordinate" format="integer" />
+        <attr name="maxXCoordinate" format="integer" />
+        <attr name="minYCoordinate" format="integer" />
+        <attr name="maxYCoordinate" format="integer" />
         <attr name="lineColor" format="color"/>
         <attr name="backgroundColor" format="color"/>
-        <attr name="lineWidth" format="integer"/>
+        <attr name="lineWidth" format="dimension"/>
+        <attr name="indicatorRadius" format="integer"/>
+        <attr name="indicatorColor" format="color"/>
+        <attr name="zoom" format="integer"/>
 
     </declare-styleable>
 </resources>
