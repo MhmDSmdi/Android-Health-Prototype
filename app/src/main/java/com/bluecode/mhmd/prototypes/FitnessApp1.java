@@ -19,7 +19,6 @@ public class FitnessApp1 extends Activity {
             if (msg.what == 0) {
                 if (progress < 100) {
                     progress ++;
-//                    ringProgressBar1.setProgress(progress);
                     myCircleProgress.setProgress(progress);
                 }
             }

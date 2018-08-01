@@ -9,4 +9,13 @@
         <attr name="progressBarIndicatorColor" format="color"/>
         <attr name="progressBarIndicatorRadius" format="integer"/>
     </declare-styleable>
+
+    <declare-styleable name="LineChart">
+        <attr name="min" format="integer" />
+        <attr name="max" format="integer" />
+        <attr name="lineColor" format="color"/>
+        <attr name="backgroundColor" format="color"/>
+        <attr name="lineWidth" format="integer"/>
+
+    </declare-styleable>
 </resources>
