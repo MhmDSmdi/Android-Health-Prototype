@@ -1,0 +1,22 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+    </style>
+
+    <style name="AppTheme.Detail">
+        <item name="android:windowTranslucentStatus" tools:targetApi="kitkat">false</item>
+        <item name="android:windowAllowEnterTransitionOverlap" tools:targetApi="lollipop">false</item>
+        <item name="android:windowEnterTransition" tools:targetApi="lollipop">@transition/detail_enter</item>
+    </style>
+
+    <style name="AppTheme.Main">
+        <item name="android:windowExitTransition" tools:targetApi="lollipop">@transition/main_exit</item>
+        <item name="android:windowReenterTransition" tools:targetApi="lollipop">@transition/main_reenter</item>
+    </style>
+
+</resources>
