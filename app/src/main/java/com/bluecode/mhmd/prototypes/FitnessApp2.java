@@ -20,7 +20,7 @@ public class FitnessApp2 extends Activity {
         setContentView(R.layout.activity_linear_chart);
         lineChart = findViewById(R.id.lineChart);
         List<Pair<Integer, Integer>> pairs = new ArrayList<>();
-        pairs.add(new Pair<Integer, Integer>(10, 20));
+        pairs.add(new Pair<Integer, Integer>(5, 60));
         pairs.add(new Pair<Integer, Integer>(12, 23));
         pairs.add(new Pair<Integer, Integer>(15, 20));
         pairs.add(new Pair<Integer, Integer>(23, 30));

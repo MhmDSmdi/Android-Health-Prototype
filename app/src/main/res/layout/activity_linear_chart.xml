@@ -10,5 +10,9 @@
         android:layout_height="200dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
+        app:maxXCoordinate="100"
+        app:minXCoordinate="0"
+        app:maxYCoordinate="80"
+        app:minYCoordinate="0"
         app:backgroundColor="@color/colorAccent"/>
 </RelativeLayout>

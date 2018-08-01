@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 
@@ -87,8 +88,9 @@ public class LineChart<V, T> extends View {
         final int height = getDefaultSize(getSuggestedMinimumHeight(), heightMeasureSpec);
         final int width = getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec);
         setMeasuredDimension(width, height);
-        xScaleCoordinate = width / (maxXCoordinate - minXCoordinate);
-        yScaleCoordinate = width / (maxYCoordinate - minYCoordinate);
+        xScaleCoordinate = width / (float)(maxXCoordinate - minXCoordinate);
+        yScaleCoordinate = height / (float)(maxYCoordinate - minYCoordinate);
+        Log.d("Tag", "onMeasure: " + width + "   -  " + height + "  - " + xScaleCoordinate + "  - " + yScaleCoordinate);
         rectF.set(0, 0, width , height);
     }
 
@@ -117,7 +119,7 @@ public class LineChart<V, T> extends View {
 
     private void drawNode(Canvas canvas,  List<Pair<Float, Float>> pairs) {
         for (Pair<Float, Float> pair : pairs) {
-            canvas.drawCircle(pair.first, pair.second, 5, indicatorPaint);
+            canvas.drawCircle(pair.first, maxYCoordinate * yScaleCoordinate -  pair.second, 5, indicatorPaint);
         }
     }
 }
