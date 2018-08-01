@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.RectF;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -99,7 +100,8 @@ public class LineChart<V, T> extends View {
         super.onDraw(canvas);
         canvas.drawRect(rectF, backgroundPaint);
         List<Pair<Float, Float>> pairs = scaleProcessing(pairList);
-        drawNode(canvas, pairs);
+//        drawNode(canvas, pairs);
+        drawLine(canvas, pairs);
     }
 
     public void setDataSet(List<Pair<Integer, Integer>> pairList) {
@@ -121,5 +123,26 @@ public class LineChart<V, T> extends View {
         for (Pair<Float, Float> pair : pairs) {
             canvas.drawCircle(pair.first, maxYCoordinate * yScaleCoordinate -  pair.second, 5, indicatorPaint);
         }
+    }
+
+    private float[] pairToArray(List<Pair<Float, Float>> pairs) {
+        float[] floats = new float[pairs.size() * 2];
+        int flag = 0;
+        for (int i = 0; i < pairs.size() ; i++) {
+            floats[flag] = pairs.get(i).first;
+            floats[flag + 1] = maxYCoordinate * yScaleCoordinate - pairs.get(i).second;
+            flag += 2;
+        }
+        return floats;
+    }
+
+    private void drawLine(Canvas canvas, List<Pair<Float, Float>> pairs) {
+        Path path = new Path();
+        path.moveTo(0,maxYCoordinate * yScaleCoordinate);
+        for (Pair<Float, Float> pair : pairs) {
+            path.lineTo(pair.first, maxYCoordinate * yScaleCoordinate -  pair.second);
+        }
+        path.lineTo(maxXCoordinate * xScaleCoordinate,maxYCoordinate * yScaleCoordinate);
+        canvas.drawPath(path, indicatorPaint);
     }
 }

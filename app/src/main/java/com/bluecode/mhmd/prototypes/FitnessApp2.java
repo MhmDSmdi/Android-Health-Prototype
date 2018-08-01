@@ -21,12 +21,12 @@ public class FitnessApp2 extends Activity {
         lineChart = findViewById(R.id.lineChart);
         List<Pair<Integer, Integer>> pairs = new ArrayList<>();
         pairs.add(new Pair<Integer, Integer>(5, 60));
-        pairs.add(new Pair<Integer, Integer>(12, 23));
         pairs.add(new Pair<Integer, Integer>(15, 20));
         pairs.add(new Pair<Integer, Integer>(23, 30));
         pairs.add(new Pair<Integer, Integer>(35, 10));
         pairs.add(new Pair<Integer, Integer>(45, 32));
         pairs.add(new Pair<Integer, Integer>(63, 12));
+        pairs.add(new Pair<Integer, Integer>(70, 23));
         pairs.add(new Pair<Integer, Integer>(75, 80));
         pairs.add(new Pair<Integer, Integer>(94, 50));
         lineChart.setDataSet(pairs);

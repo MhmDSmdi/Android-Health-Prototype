@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimary">
 
     <com.bluecode.mhmd.prototypes.Component.LineChart
         android:id="@+id/lineChart"
@@ -14,5 +15,6 @@
         app:minXCoordinate="0"
         app:maxYCoordinate="80"
         app:minYCoordinate="0"
-        app:backgroundColor="@color/colorAccent"/>
+        app:lineColor="@color/colorPrimaryXLight"
+        app:backgroundColor="@color/colorPrimary"/>
 </RelativeLayout>
