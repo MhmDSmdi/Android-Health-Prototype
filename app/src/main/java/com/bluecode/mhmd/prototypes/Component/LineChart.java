@@ -34,6 +34,10 @@ public class LineChart<V, T> extends View {
     private Paint linePaint;
     private Paint indicatorPaint;
 
+    private float xScaleCoordinate;
+    private float yScaleCoordinate;
+
+
     private List<Pair<Integer, Integer>> pairList;
 
 
@@ -83,6 +87,8 @@ public class LineChart<V, T> extends View {
         final int height = getDefaultSize(getSuggestedMinimumHeight(), heightMeasureSpec);
         final int width = getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec);
         setMeasuredDimension(width, height);
+        xScaleCoordinate = width / (maxXCoordinate - minXCoordinate);
+        yScaleCoordinate = width / (maxYCoordinate - minYCoordinate);
         rectF.set(0, 0, width , height);
     }
 
@@ -90,16 +96,28 @@ public class LineChart<V, T> extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.drawRect(rectF, backgroundPaint);
+        List<Pair<Float, Float>> pairs = scaleProcessing(pairList);
+        drawNode(canvas, pairs);
     }
 
     public void setDataSet(List<Pair<Integer, Integer>> pairList) {
         this.pairList = pairList;
+        invalidate();
     }
 
-    private List<Pair<Integer, Integer>> scaleProcessing(List<Pair<Integer, Integer>> pairList) {
-        List<Pair<Integer, Integer>> tempList = new ArrayList<>();
+    private List<Pair<Float, Float>> scaleProcessing(List<Pair<Integer, Integer>> pairList) {
+        List<Pair<Float, Float>> tempList = new ArrayList<>();
         for (Pair<Integer, Integer> pair : pairList) {
+            float newX = xScaleCoordinate * pair.first;
+            float newY = yScaleCoordinate * pair.second;
+            tempList.add(new Pair<Float, Float>(newX, newY));
+        }
+        return tempList;
+    }
 
+    private void drawNode(Canvas canvas,  List<Pair<Float, Float>> pairs) {
+        for (Pair<Float, Float> pair : pairs) {
+            canvas.drawCircle(pair.first, pair.second, 5, indicatorPaint);
         }
     }
 }
