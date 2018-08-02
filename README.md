@@ -8,7 +8,7 @@ Implement UI Design in Health & Fitness Apps
 
 ## Authors
 
-* **MohammafReza Samadi**
+* **MohammadReza Samadi**
 
 ## License
 
