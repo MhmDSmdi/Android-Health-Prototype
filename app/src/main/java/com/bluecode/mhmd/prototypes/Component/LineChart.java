@@ -4,9 +4,11 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
+import android.graphics.Shader;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -26,7 +28,7 @@ public class LineChart<V, T> extends View {
     private int maxYCoordinate = 100;
     private int lineColor = Color.DKGRAY;
     private int backgroundColor = Color.WHITE;
-    private float lineWidth = 2;
+    private float lineWidth = 4;
     private int indicatorRadius = 2;
     private int indicatorColor = Color.BLUE;
     private int zoom = 1;
@@ -78,10 +80,11 @@ public class LineChart<V, T> extends View {
         linePaint.setStyle(Paint.Style.STROKE);
         linePaint.setStrokeWidth(lineWidth);
 
+
         indicatorPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         indicatorPaint.setColor(indicatorColor);
-        indicatorPaint.setStyle(Paint.Style.FILL);
-
+        indicatorPaint.setStyle(Paint.Style.STROKE);
+//        indicatorPaint.setStrokeWidth(lineWidth);
     }
 
     @Override
@@ -100,8 +103,8 @@ public class LineChart<V, T> extends View {
         super.onDraw(canvas);
         canvas.drawRect(rectF, backgroundPaint);
         List<Pair<Float, Float>> pairs = scaleProcessing(pairList);
-//        drawNode(canvas, pairs);
         drawLine(canvas, pairs);
+        drawNode(canvas, pairs);
     }
 
     public void setDataSet(List<Pair<Integer, Integer>> pairList) {
@@ -122,6 +125,7 @@ public class LineChart<V, T> extends View {
     private void drawNode(Canvas canvas,  List<Pair<Float, Float>> pairs) {
         for (Pair<Float, Float> pair : pairs) {
             canvas.drawCircle(pair.first, maxYCoordinate * yScaleCoordinate -  pair.second, 5, indicatorPaint);
+//            canvas.drawCircle();
         }
     }
 
@@ -137,12 +141,18 @@ public class LineChart<V, T> extends View {
     }
 
     private void drawLine(Canvas canvas, List<Pair<Float, Float>> pairs) {
+        LinearGradient linearGradient = new LinearGradient(
+                0, maxYCoordinate * yScaleCoordinate, pairs.get(pairs.size() - 1).first,maxYCoordinate * yScaleCoordinate - pairs.get(pairs.size() - 1).second,
+                new int[]{lineColor, backgroundColor, Color.BLUE, Color.BLACK},
+                new float[]{0, 1, 1, 1f},
+                Shader.TileMode.REPEAT);
+        linePaint.setShader(linearGradient);
         Path path = new Path();
         path.moveTo(0,maxYCoordinate * yScaleCoordinate);
         for (Pair<Float, Float> pair : pairs) {
             path.lineTo(pair.first, maxYCoordinate * yScaleCoordinate -  pair.second);
         }
-        path.lineTo(maxXCoordinate * xScaleCoordinate,maxYCoordinate * yScaleCoordinate);
-        canvas.drawPath(path, indicatorPaint);
+//        path.lineTo(maxXCoordinate * xScaleCoordinate,maxYCoordinate * yScaleCoordinate);
+        canvas.drawPath(path, linePaint);
     }
 }

@@ -7,7 +7,7 @@
 
     <com.bluecode.mhmd.prototypes.Component.LineChart
         android:id="@+id/lineChart"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
@@ -15,6 +15,7 @@
         app:minXCoordinate="0"
         app:maxYCoordinate="80"
         app:minYCoordinate="0"
+        app:indicatorColor="@color/colorPrimaryXLight"
         app:lineColor="@color/colorPrimaryXLight"
-        app:backgroundColor="@color/colorPrimary"/>
+        app:backgroundColor="@color/colorPrimaryDark"/>
 </RelativeLayout>
