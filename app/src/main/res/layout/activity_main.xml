@@ -58,7 +58,8 @@
                 app:progressbarColor="@color/colorPrimaryLight"
                 app:progressBarIndicatorColor="@color/colorPrimaryXLight"
                 app:progressBarIndicatorRadius="15"
-                app:progress="35"
+                app:progress="0"
+                app:max="100"
                 app:progressBarThickness="8dp"/>
 
             <RelativeLayout
@@ -85,7 +86,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_below="@id/txt_progress_title"
                     android:layout_marginTop="4dp"
-                    android:text="2052"
+                    android:text="0"
                     android:textSize="30sp"
                     android:textStyle="bold"
                     android:textColor="@color/colorWhite"

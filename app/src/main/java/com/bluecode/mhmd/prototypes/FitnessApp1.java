@@ -9,6 +9,7 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.widget.TextView;
 
 import com.bluecode.mhmd.prototypes.Component.CircleProgressBar;
 
@@ -17,6 +18,7 @@ public class FitnessApp1 extends Activity implements SensorEventListener {
     private CircleProgressBar myCircleProgress;
     private SensorManager mSensorManager;
     private Sensor mStep;
+    private TextView stepTxt;
 
     private int stepDetector = 0;
     private int counterSteps = 0;
@@ -27,11 +29,10 @@ public class FitnessApp1 extends Activity implements SensorEventListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(com.bluecode.mhmd.prototypes.R.layout.activity_main);
-        myCircleProgress = findViewById(com.bluecode.mhmd.prototypes.R.id.progressBar);
-
+        myCircleProgress = findViewById(R.id.progressBar);
+        stepTxt = findViewById(R.id.txt_progress_steps);
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mStep = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
-
     }
 
     @Override
@@ -42,6 +43,8 @@ public class FitnessApp1 extends Activity implements SensorEventListener {
                     counterSteps = (int)sensorEvent.values[0];
                 }
                 progress = (int)sensorEvent.values[0] - counterSteps;
+                myCircleProgress.setProgress(progress);
+                stepTxt.setText(progress + "");
                 break;
             case Sensor.TYPE_STEP_DETECTOR:
                 stepDetector++;
@@ -57,7 +60,7 @@ public class FitnessApp1 extends Activity implements SensorEventListener {
     @Override
     protected void onResume() {
         super.onResume();
-        mSensorManager.registerListener(this, mStep, SensorManager.SENSOR_STATUS_ACCURACY_HIGH);
+        mSensorManager.registerListener(this, mStep, SensorManager.SENSOR_DELAY_FASTEST);
     }
 
     @Override
